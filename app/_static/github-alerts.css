@@ -1,0 +1,130 @@
+/* GitHub Alerts Base Styles */
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: 0.25em solid #d0d7de;
+  border-radius: 0;
+}
+
+.markdown-alert > :first-child {
+  margin-top: 0;
+}
+
+.markdown-alert > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 8px;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+/* Note - Blue */
+.markdown-alert.markdown-alert-note {
+  border-left-color: #0969da !important;
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: #0969da;
+}
+
+/* Tip - Green */
+.markdown-alert.markdown-alert-tip {
+  border-left-color: #1a7f37 !important;
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: #1a7f37;
+}
+
+/* Important - Purple */
+.markdown-alert.markdown-alert-important {
+  border-left-color: #8250df !important;
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: #8250df;
+}
+
+/* Warning - Orange/Yellow */
+.markdown-alert.markdown-alert-warning {
+  border-left-color: #bf8700 !important;
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: #9a6700;
+}
+
+/* Caution - Red */
+.markdown-alert.markdown-alert-caution {
+  border-left-color: #cf222e !important;
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: #cf222e;
+}
+
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+  .markdown-alert {
+    border-left-color: #3d444d;
+  }
+
+  .markdown-alert.markdown-alert-note {
+    border-left-color: #1f6feb !important;
+  }
+
+  .markdown-alert.markdown-alert-note .markdown-alert-title {
+    color: #58a6ff;
+  }
+
+  .markdown-alert.markdown-alert-tip {
+    border-left-color: #238636 !important;
+  }
+
+  .markdown-alert.markdown-alert-tip .markdown-alert-title {
+    color: #3fb950;
+  }
+
+  .markdown-alert.markdown-alert-important {
+    border-left-color: #8957e5 !important;
+  }
+
+  .markdown-alert.markdown-alert-important .markdown-alert-title {
+    color: #a371f7;
+  }
+
+  .markdown-alert.markdown-alert-warning {
+    border-left-color: #9e6a03 !important;
+  }
+
+  .markdown-alert.markdown-alert-warning .markdown-alert-title {
+    color: #d29922;
+  }
+
+  .markdown-alert.markdown-alert-caution {
+    border-left-color: #da3633 !important;
+  }
+
+  .markdown-alert.markdown-alert-caution .markdown-alert-title {
+    color: #f85149;
+  }
+}
+
+/* Make sure the border is always visible */
+.markdown-alert {
+  border-left-style: solid !important;
+  border-left-width: 0.25em !important;
+}
