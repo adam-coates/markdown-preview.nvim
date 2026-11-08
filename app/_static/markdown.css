@@ -366,3 +366,13 @@
   padding-left: 2em;
   text-indent: -2em;
 }
+
+/* Quarto columns (::: {.columns} with ::: {.column width="40%"} inside) */
+.markdown-body .columns {
+  display: flex;
+  gap: 1.5em;
+}
+.markdown-body .columns > .column {
+  flex: 1;
+  min-width: 0;
+}

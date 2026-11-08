@@ -345,7 +345,14 @@ rewritten into what the page renders, keeping line numbers for scroll sync:
 - Callouts (`::: {.callout-note}`, `-tip`, `-important`, `-warning`,
   `-caution`) become admonitions, titled by `title="..."` or a heading on
   their first line.
-- Other `:::` divs, such as columns, keep their content without the markers.
+- Other `:::` divs (`{.response}`, `{.columns}`, ...) become `<div>`s with
+  those classes; columns sit side by side.
+- Bracketed spans (`[text]{.class}`) become `<span>`s, and attributes after
+  headings, images and links (`{.unnumbered}`, `{width=50%}`) are hidden.
+- Stylesheets listed under `css:` in the front matter are applied, as in
+  Quarto's HTML output, so a template's own classes are styled. Theme
+  variables (see Theming) can be used with fallbacks, for example
+  `.response { color: var(--color-text-link, #2A6099); }`.
 
 Citations work as in markdown files (see Citations above).
 
