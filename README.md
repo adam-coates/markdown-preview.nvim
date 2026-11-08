@@ -305,10 +305,35 @@ The page reads the file when it loads, so refresh the browser after changing it.
 | `--color-code-inline`, `--color-markdown-code-bg`, `--color-code-block-bg`, `--color-code-block-border`, `--radius-code-block` | Inline code and code blocks |
 | `--hl-text`, `--hl-background`, `--hl-comment`, `--hl-keyword`, `--hl-string`, `--hl-number`, `--hl-title`, `--hl-type`, `--hl-tag`, `--hl-regexp`, `--hl-symbol`, `--hl-builtin`, `--hl-meta`, `--hl-addition`, `--hl-deletion` | Syntax highlighting |
 | `--alert-note`, `--alert-tip`, `--alert-important`, `--alert-warning`, `--alert-caution` | GitHub admonitions |
+| `--color-citation` | Formatted citations |
 | `--diagram-line`, `--diagram-text`, `--diagram-fill`, `--diagram-background` | Graphviz, flowchart.js and sequence diagrams (only their default black and white) |
 
 Mermaid draws its own colours. Theme it through `g:mkdp_preview_options`, for
 example `'maid': {'theme': 'base', 'themeVariables': {'primaryColor': '#3c3836'}}`.
+
+### Citations
+
+Pandoc-style citations render as pandoc and Quarto render them, once the
+document names a bibliography in its YAML front matter:
+
+```markdown
+---
+bibliography: refs.bib   # a path, or a list of them, relative to the file
+csl: apa.csl             # optional citation style (pandoc's default is Chicago)
+---
+
+As shown before [@smith2020; @lee2018, p. 4], and @smith2020 argues...
+```
+
+`[@key]`, `[@a; @b]`, `[-@key]` and `@key` are formatted with
+`pandoc --citeproc`, and the reference list goes where the document has
+`::: {#refs}`, or at the end. Citations in code, email addresses and Quarto
+cross-references (`@fig-...`, `@tbl-...`) are left alone. This needs `pandoc`
+on your `PATH`; set `citeproc: false` in the front matter to turn it off.
+
+[zotcite](https://github.com/jalvesaq/zotcite) fills the bibliography file
+from Zotero when you save the document, so citing straight from Zotero works
+without exporting anything by hand.
 
 ### Custom Examples
 

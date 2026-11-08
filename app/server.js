@@ -6,6 +6,7 @@ exports.run = function () {
 
   const opener = require('./lib/util/opener')
   const logger = require('./lib/util/logger')('app/server')
+const citations = require('./citations')
   const { getIP } = require('./lib/util/getIP')
   const routes = require('./routes')
 
@@ -74,7 +75,7 @@ exports.run = function () {
         const pageTitle = await plugin.nvim.getVar('mkdp_page_title')
         const theme = await plugin.nvim.getVar('mkdp_theme')
         const name = await buffer.name
-        const content = await buffer.getLines()
+        const content = await citations.render(await buffer.getLines(), name)
         const currentBuffer = await plugin.nvim.buffer
         client.emit('refresh_content', {
           options,
@@ -108,8 +109,14 @@ exports.run = function () {
       port
     }, function () {
       logger.info('server run: ', port)
-      function refreshPage ({ bufnr, data }) {
+      // Citations are formatted asynchronously; drop a result if a newer
+      // update for the same buffer started meanwhile.
+      const latest = {}
+      async function refreshPage ({ bufnr, data }) {
         logger.info('refresh page: ', bufnr)
+        const seq = (latest[bufnr] = (latest[bufnr] || 0) + 1)
+        data.content = await citations.render(data.content, data.name)
+        if (seq !== latest[bufnr]) return
         ;(clients[bufnr] || []).forEach(c => {
           if (c.connected) {
             c.emit('refresh_content', data)

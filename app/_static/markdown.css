@@ -354,3 +354,15 @@
 .markdown-body :not(pre) > code {
   color: var(--color-code-inline, inherit);
 }
+
+/* Citations and the reference list (citations.js, via pandoc --citeproc) */
+.markdown-body .citation {
+  color: var(--color-citation, inherit);
+}
+.markdown-body .csl-bib-body .csl-entry {
+  margin-bottom: 0.6em;
+}
+.markdown-body .csl-bib-body.hanging-indent .csl-entry {
+  padding-left: 2em;
+  text-indent: -2em;
+}
