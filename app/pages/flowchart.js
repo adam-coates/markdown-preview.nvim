@@ -25,7 +25,7 @@ export const renderFlowchart = () => {
   list.forEach(item => {
     try {
       let d = window.flowchart.parse(item.textContent);
-      item.className = ''
+      item.className = 'flowchart-svg'
       item.textContent = ''
       d.drawSVG(item, options);
       d = null

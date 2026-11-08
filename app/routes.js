@@ -36,6 +36,11 @@ use((req, res, next) => {
       if (fs.existsSync(req.hicss)) {
         return fs.createReadStream(req.hicss).pipe(res)
       }
+    } else if (req.themecss && req.asPath === '/_static/theme.css') {
+      if (fs.existsSync(req.themecss)) {
+        res.setHeader('Content-Type', 'text/css')
+        return fs.createReadStream(req.themecss).pipe(res)
+      }
     }
   } catch (e) {
     logger.error('load diy css fail: ', req.asPath, req.mkcss, req.hicss)

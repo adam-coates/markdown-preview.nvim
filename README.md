@@ -211,6 +211,10 @@ let g:mkdp_preview_options = {
 " like '/Users/username/markdown.css' or expand('~/markdown.css')
 let g:mkdp_markdown_css = ''
 
+" use a CSS file of variables to theme the page (see Theming below).
+" Must be an absolute path
+let g:mkdp_theme_css = ''
+
 " use a custom highlight style. Must be an absolute path
 " like '/Users/username/highlight.css' or expand('~/highlight.css')
 let g:mkdp_highlight_css = ''
@@ -267,6 +271,44 @@ Commands:
 " Stop the preview"
 :MarkdownPreviewStop
 ```
+
+### Theming
+
+Every colour, font and radius on the preview page is a CSS variable with a
+default. To restyle the page without replacing its stylesheets, point
+`g:mkdp_theme_css` at a CSS file that sets any of them:
+
+```vim
+let g:mkdp_theme_css = expand('~/.config/markdown-preview/theme.css')
+```
+
+The file is served as `/_static/theme.css` and imported before the page's own
+styles. Use `html:root, main[data-theme]` as the selector, so your values win
+over the built-in light and dark defaults:
+
+```css
+html:root, main[data-theme] {
+  --color-heading-1: #ea6962;
+  --font-mono: "JetBrains Mono", monospace;
+}
+```
+
+The page reads the file when it loads, so refresh the browser after changing it.
+
+| Variables | What they style |
+| --- | --- |
+| `--background-color`, `--secondary-background-color`, `--foreground-color`, `--border-color` | Page around the document |
+| `--color-text-primary`, `--color-text-tertiary`, `--color-text-link`, `--color-bg-primary`, `--color-bg-secondary`, `--color-bg-tertiary`, `--color-border-primary`, `--color-border-secondary`, `--color-border-tertiary`, `--color-kbd-foreground`, `--color-markdown-table-border`, `--color-markdown-table-tr-border` | Document body |
+| `--color-heading-1` to `--color-heading-6` | One colour per heading level |
+| `--color-markdown-blockquote-border`, `--color-blockquote-text` | Blockquotes |
+| `--font-body`, `--font-mono` | Fonts for text and code |
+| `--color-code-inline`, `--color-markdown-code-bg`, `--color-code-block-bg`, `--color-code-block-border`, `--radius-code-block` | Inline code and code blocks |
+| `--hl-text`, `--hl-background`, `--hl-comment`, `--hl-keyword`, `--hl-string`, `--hl-number`, `--hl-title`, `--hl-type`, `--hl-tag`, `--hl-regexp`, `--hl-symbol`, `--hl-builtin`, `--hl-meta`, `--hl-addition`, `--hl-deletion` | Syntax highlighting |
+| `--alert-note`, `--alert-tip`, `--alert-important`, `--alert-warning`, `--alert-caution` | GitHub admonitions |
+| `--diagram-line`, `--diagram-text`, `--diagram-fill`, `--diagram-background` | Graphviz, flowchart.js and sequence diagrams (only their default black and white) |
+
+Mermaid draws its own colours. Theme it through `g:mkdp_preview_options`, for
+example `'maid': {'theme': 'base', 'themeVariables': {'primaryColor': '#3c3836'}}`.
 
 ### Custom Examples
 
