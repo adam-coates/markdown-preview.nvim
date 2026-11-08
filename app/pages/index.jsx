@@ -122,7 +122,8 @@ export default class PreviewPage extends React.Component {
     // Close the previous socket
     const tmpSocket = window.socket;
 
-    window.history.replaceState(null, "", `/${bufnr}`);
+    // Keep the address the server serves (/page/N), so a browser refresh works.
+    window.history.replaceState(null, "", `/page/${bufnr}`);
 
     const socket = io({
       query: {
