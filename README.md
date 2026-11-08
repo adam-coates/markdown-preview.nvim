@@ -335,6 +335,20 @@ on your `PATH`; set `citeproc: false` in the front matter to turn it off.
 from Zotero when you save the document, so citing straight from Zotero works
 without exporting anything by hand.
 
+### Quarto
+
+Add `quarto` to `g:mkdp_filetypes` to preview `.qmd` files. Quarto syntax is
+rewritten into what the page renders, keeping line numbers for scroll sync:
+
+- Code chunks such as ` ```{python} ` are highlighted, ` ```{mermaid} ` and
+  ` ```{dot} ` are drawn, and chunk options (`#| ...`) are hidden.
+- Callouts (`::: {.callout-note}`, `-tip`, `-important`, `-warning`,
+  `-caution`) become admonitions, titled by `title="..."` or a heading on
+  their first line.
+- Other `:::` divs, such as columns, keep their content without the markers.
+
+Citations work as in markdown files (see Citations above).
+
 ### Custom Examples
 
 **Table of contents**

@@ -7,6 +7,7 @@ exports.run = function () {
   const opener = require('./lib/util/opener')
   const logger = require('./lib/util/logger')('app/server')
 const citations = require('./citations')
+const quarto = require('./quarto')
   const { getIP } = require('./lib/util/getIP')
   const routes = require('./routes')
 
@@ -75,7 +76,7 @@ const citations = require('./citations')
         const pageTitle = await plugin.nvim.getVar('mkdp_page_title')
         const theme = await plugin.nvim.getVar('mkdp_theme')
         const name = await buffer.name
-        const content = await citations.render(await buffer.getLines(), name)
+        const content = await citations.render(quarto.render(await buffer.getLines(), name), name)
         const currentBuffer = await plugin.nvim.buffer
         client.emit('refresh_content', {
           options,
@@ -115,7 +116,7 @@ const citations = require('./citations')
       async function refreshPage ({ bufnr, data }) {
         logger.info('refresh page: ', bufnr)
         const seq = (latest[bufnr] = (latest[bufnr] || 0) + 1)
-        data.content = await citations.render(data.content, data.name)
+        data.content = await citations.render(quarto.render(data.content, data.name), data.name)
         if (seq !== latest[bufnr]) return
         ;(clients[bufnr] || []).forEach(c => {
           if (c.connected) {
