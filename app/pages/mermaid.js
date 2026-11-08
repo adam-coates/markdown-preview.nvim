@@ -6,7 +6,7 @@ import {escape} from './utils';
 const mermaidChart = (code) => {
   try {
     // eslint-disable-next-line
-    mermaid.parse(code)
+    mermaid.parse(code, { suppressErrors: true })
     return `<div class="mermaid">${escape(code)}</div>`
   } catch ({ str, hash }) {
     return `<pre>${str}</pre>`

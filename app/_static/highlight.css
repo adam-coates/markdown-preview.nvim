@@ -14,20 +14,20 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  color: var(--color-text-primary);
-  background: #f8f8f8;
+  color: var(--hl-text, var(--color-text-primary));
+  background: var(--hl-background, transparent);
 }
 
 .hljs-comment,
 .hljs-quote {
-  color: #998;
+  color: var(--hl-comment, #998);
   font-style: italic;
 }
 
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst {
-  color: var(--color-text-primary);
+  color: var(--hl-keyword, var(--color-text-primary));
   font-weight: bold;
 }
 
@@ -36,18 +36,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-variable,
 .hljs-template-variable,
 .hljs-tag .hljs-attr {
-  color: #008080;
+  color: var(--hl-number, #008080);
 }
 
 .hljs-string,
 .hljs-doctag {
-  color: #d14;
+  color: var(--hl-string, #d14);
 }
 
 .hljs-title,
 .hljs-section,
 .hljs-selector-id {
-  color: #900;
+  color: var(--hl-title, #900);
   font-weight: bold;
 }
 
@@ -57,43 +57,43 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 .hljs-type,
 .hljs-class .hljs-title {
-  color: #458;
+  color: var(--hl-type, #458);
   font-weight: bold;
 }
 
 .hljs-tag,
 .hljs-name,
 .hljs-attribute {
-  color: #000080;
+  color: var(--hl-tag, #000080);
   font-weight: normal;
 }
 
 .hljs-regexp,
 .hljs-link {
-  color: #009926;
+  color: var(--hl-regexp, #009926);
 }
 
 .hljs-symbol,
 .hljs-bullet {
-  color: #990073;
+  color: var(--hl-symbol, #990073);
 }
 
 .hljs-built_in,
 .hljs-builtin-name {
-  color: #0086b3;
+  color: var(--hl-builtin, #0086b3);
 }
 
 .hljs-meta {
-  color: #999;
+  color: var(--hl-meta, #999);
   font-weight: bold;
 }
 
 .hljs-deletion {
-  background: #fdd;
+  background: var(--hl-deletion, #fdd);
 }
 
 .hljs-addition {
-  background: #dfd;
+  background: var(--hl-addition, #dfd);
 }
 
 .hljs-emphasis {

@@ -25,7 +25,7 @@ export const renderDiagram = () => {
   list.forEach(item => {
     try {
       let d = window.Diagram.parse(item.textContent)
-      item.className = ''
+      item.className = 'sequence-diagrams-svg'
       item.textContent = ''
       d.drawSVG(item, {
         theme: 'hand',

@@ -33,47 +33,47 @@
 
 /* Note - Blue */
 .markdown-alert.markdown-alert-note {
-  border-left-color: #0969da !important;
+  border-left-color: var(--alert-note, #0969da) !important;
 }
 
 .markdown-alert.markdown-alert-note .markdown-alert-title {
-  color: #0969da;
+  color: var(--alert-note, #0969da);
 }
 
 /* Tip - Green */
 .markdown-alert.markdown-alert-tip {
-  border-left-color: #1a7f37 !important;
+  border-left-color: var(--alert-tip, #1a7f37) !important;
 }
 
 .markdown-alert.markdown-alert-tip .markdown-alert-title {
-  color: #1a7f37;
+  color: var(--alert-tip, #1a7f37);
 }
 
 /* Important - Purple */
 .markdown-alert.markdown-alert-important {
-  border-left-color: #8250df !important;
+  border-left-color: var(--alert-important, #8250df) !important;
 }
 
 .markdown-alert.markdown-alert-important .markdown-alert-title {
-  color: #8250df;
+  color: var(--alert-important, #8250df);
 }
 
 /* Warning - Orange/Yellow */
 .markdown-alert.markdown-alert-warning {
-  border-left-color: #bf8700 !important;
+  border-left-color: var(--alert-warning, #bf8700) !important;
 }
 
 .markdown-alert.markdown-alert-warning .markdown-alert-title {
-  color: #9a6700;
+  color: var(--alert-warning, #9a6700);
 }
 
 /* Caution - Red */
 .markdown-alert.markdown-alert-caution {
-  border-left-color: #cf222e !important;
+  border-left-color: var(--alert-caution, #cf222e) !important;
 }
 
 .markdown-alert.markdown-alert-caution .markdown-alert-title {
-  color: #cf222e;
+  color: var(--alert-caution, #cf222e);
 }
 
 /* Dark mode colors */

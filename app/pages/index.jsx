@@ -299,7 +299,9 @@ export default class PreviewPage extends React.Component {
                 ...(options.maid || {}),
               });
               // eslint-disable-next-line
-              mermaid.init(undefined, document.querySelectorAll(".mermaid"));
+              // run() with suppressErrors draws an error in place of a diagram it
+              // can't parse and carries on, where init() stopped at the first one.
+              mermaid.run({ nodes: document.querySelectorAll(".mermaid"), suppressErrors: true });
             } catch (e) {}
 
             chart.render();
@@ -352,7 +354,7 @@ export default class PreviewPage extends React.Component {
           <link rel="stylesheet" href="/_static/markdown.css" />
           <link rel="stylesheet" href="/_static/github-alerts.css" />
           <link rel="stylesheet" href="/_static/highlight.css" />
-          <link rel="stylesheet" href="/_static/katex@0.15.3.css" />
+          <link rel="stylesheet" href="/_static/katex.min.css" />
           <link rel="stylesheet" href="/_static/sequence-diagram-min.css" />
           <script
             type="text/javascript"
@@ -374,7 +376,7 @@ export default class PreviewPage extends React.Component {
           ></script>
           <script
             type="text/javascript"
-            src="/_static/katex@0.15.3.js"
+            src="/_static/katex.min.js"
           ></script>
           <script type="text/javascript" src="/_static/mhchem.min.js"></script>
           <script
@@ -383,7 +385,7 @@ export default class PreviewPage extends React.Component {
           ></script>
           <script
             type="text/javascript"
-            src="/_static/flowchart@1.13.0.min.js"
+            src="/_static/flowchart.min.js"
           ></script>
           <script type="text/javascript" src="/_static/viz.js"></script>
           <script type="text/javascript" src="/_static/full.render.js"></script>

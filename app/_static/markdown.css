@@ -1,4 +1,10 @@
 /*
+ * Theme variables come first: g:mkdp_theme_css (served as /_static/theme.css)
+ * can override any variable below. See "Theming" in the README.
+ */
+@import url("theme.css");
+
+/*
  * github like style
  * https://github.com/iamcco/markdown.css/blob/master/dest/github/markdown.css
  */
@@ -48,8 +54,8 @@
   margin-bottom: 0;
 }
 .markdown-body {
-  font-family: "TX02 Nerd Font", Helvetica, "Segoe UI", Arial, freesans,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: var(--font-body, "TX02 Nerd Font", Helvetica, "Segoe UI", Arial, freesans,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol");
   font-size: 16px;
   color: var(--color-text-primary);
   line-height: 1.6;
@@ -116,6 +122,7 @@
   margin-bottom: 16px;
 }
 .markdown-body h1 {
+  color: var(--color-heading-1, inherit);
   margin: 0.67em 0;
   padding-bottom: 0.3em;
   font-size: 2.25em;
@@ -123,24 +130,28 @@
   border-bottom: 1px solid var(--color-border-secondary);
 }
 .markdown-body h2 {
+  color: var(--color-heading-2, inherit);
   padding-bottom: 0.3em;
   font-size: 1.75em;
   line-height: 1.225;
   border-bottom: 1px solid var(--color-border-secondary);
 }
 .markdown-body h3 {
+  color: var(--color-heading-3, inherit);
   font-size: 1.5em;
   line-height: 1.43;
 }
 .markdown-body h4 {
+  color: var(--color-heading-4, inherit);
   font-size: 1.25em;
 }
 .markdown-body h5 {
+  color: var(--color-heading-5, inherit);
   font-size: 1em;
 }
 .markdown-body h6 {
   font-size: 1em;
-  color: var(--color-text-tertiary);
+  color: var(--color-heading-6, var(--color-text-tertiary));
 }
 .markdown-body hr {
   margin-top: 20px;
@@ -187,7 +198,7 @@
   margin-left: 0;
   margin-right: 0;
   padding: 0 15px;
-  color: var(--color-text-tertiary);
+  color: var(--color-blockquote-text, var(--color-text-tertiary));
   border-left: 4px solid var(--color-markdown-blockquote-border);
 }
 .markdown-body table {
@@ -215,7 +226,7 @@
 .markdown-body kbd {
   display: inline-block;
   padding: 5px 6px;
-  font: 14px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font: 14px var(--font-mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace);
   line-height: 10px;
   color: var(--color-kbd-foreground);
   vertical-align: middle;
@@ -230,9 +241,10 @@
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
-  background-color: var(--color-bg-tertiary);
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  background-color: var(--color-code-block-bg, var(--color-bg-tertiary));
+  border: 1px solid var(--color-code-block-border, transparent);
+  -webkit-border-radius: var(--radius-code-block, 3px);
+  border-radius: var(--radius-code-block, 3px);
 }
 .markdown-body pre code {
   display: inline;
@@ -254,7 +266,8 @@
   content: normal;
 }
 .markdown-body code {
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: var(--font-mono, Consolas, "Liberation Mono", Menlo, Courier, monospace);
+  color: var(--color-code-inline, inherit);
   padding: 0;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
@@ -310,4 +323,29 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
+}
+
+/*
+ * Diagrams drawn by Graphviz (```dot), flowchart.js (```flowchart) and
+ * js-sequence-diagrams (```sequence-diagrams) use black lines on white.
+ * flowchart-svg and sequence-diagrams-svg mark diagrams that are already drawn.
+ * Only those default colours are replaced, so colours set in a diagram stay.
+ */
+.markdown-body :is(.dot, .flowchart-svg, .sequence-diagrams-svg) svg :is([stroke="black"], [stroke="#000"], [stroke="#000000"]) {
+  stroke: var(--diagram-line, black);
+}
+.markdown-body :is(.dot, .flowchart-svg, .sequence-diagrams-svg) svg :is([fill="black"], [fill="#000"], [fill="#000000"]) {
+  fill: var(--diagram-line, black);
+}
+.markdown-body :is(.dot, .flowchart-svg, .sequence-diagrams-svg) svg :is([fill="white"], [fill="#fff"], [fill="#ffffff"]) {
+  fill: var(--diagram-fill, white);
+}
+.markdown-body :is(.dot, .flowchart-svg, .sequence-diagrams-svg) svg text:is(:not([fill]), [fill="black"], [fill="#000"], [fill="#000000"]) {
+  fill: var(--diagram-text, black);
+}
+.markdown-body .dot svg g.graph > polygon:first-of-type {
+  fill: var(--diagram-background, white);
+}
+.markdown-body :is(.dot, .flowchart-svg, .sequence-diagrams-svg) svg marker :is(path, polygon):not([fill]) {
+  fill: var(--diagram-line, black);
 }
