@@ -267,7 +267,6 @@
 }
 .markdown-body code {
   font-family: var(--font-mono, Consolas, "Liberation Mono", Menlo, Courier, monospace);
-  color: var(--color-code-inline, inherit);
   padding: 0;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
@@ -348,4 +347,10 @@
 }
 .markdown-body :is(.dot, .flowchart-svg, .sequence-diagrams-svg) svg marker :is(path, polygon):not([fill]) {
   fill: var(--diagram-line, black);
+}
+
+/* Inline code only: in code blocks, text highlight.js doesn't tag (names,
+   operators, brackets) keeps the block's text colour. */
+.markdown-body :not(pre) > code {
+  color: var(--color-code-inline, inherit);
 }
